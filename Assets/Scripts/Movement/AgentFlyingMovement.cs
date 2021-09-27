@@ -15,8 +15,9 @@ public class AgentFlyingMovement : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rb.velocity = new Vector2(flyingSpeed, IsFlyingUp ? flyUpForce: rb.velocity.y);
+        rb.transform.right = rb.velocity.normalized;
     }
 }

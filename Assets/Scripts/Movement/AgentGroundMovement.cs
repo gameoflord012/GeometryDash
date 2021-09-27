@@ -18,7 +18,7 @@ public class AgentGroundMovement : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
     }
