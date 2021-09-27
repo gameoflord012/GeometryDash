@@ -27,7 +27,7 @@ public class AgentMovement : MonoBehaviour
         if(IsOnGround())
         {
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            rb.AddTorque(rotationSpeed * rb.inertia, ForceMode2D.Impulse);
+            rb.AddTorque(rotationSpeed, ForceMode2D.Impulse);
         }
     }
 
