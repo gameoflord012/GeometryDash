@@ -6,7 +6,39 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AgentController : MonoBehaviour
 {
-    [field: SerializeField] public AgentState CurrentState { get; set; } = AgentState.Ground;
+    [SerializeField] GameObject GroundStateModel;
+    [SerializeField] GameObject FlyingStateModel;
+    [SerializeField] AgentState currentState;
+
+    public AgentState CurrentState
+    {
+        get => currentState;
+        set
+        {
+            currentState = value;
+
+            if(currentStateModel != null) currentStateModel.SetActive(false);
+
+            switch (currentState)
+            {
+                case AgentState.Ground:
+                    currentStateModel = GroundStateModel;
+                    break;
+                case AgentState.Fly:
+                    currentStateModel = FlyingStateModel;
+                    break;
+            }
+
+            currentStateModel.SetActive(true);
+        }
+    }
+
+    GameObject currentStateModel;
+
+    private void Awake()
+    {
+        CurrentState = currentState;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
