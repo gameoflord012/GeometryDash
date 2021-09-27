@@ -7,6 +7,7 @@ public class AgentMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float jumpForce = 15f;
+    [SerializeField] float onGroundDistance = 1f;
 
     Rigidbody2D rb;
 
@@ -22,6 +23,18 @@ public class AgentMovement : MonoBehaviour
 
     public void Jump()
     {
-        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        if(IsOnGround())
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    }
+
+    bool IsOnGround()
+    {
+        var hit = Physics2D.Raycast(transform.position, Vector2.down, onGroundDistance, 1 << LayerMask.NameToLayer("Platform"));
+        return hit.collider != null;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawRay(transform.position, Vector2.down * onGroundDistance);
     }
 }
