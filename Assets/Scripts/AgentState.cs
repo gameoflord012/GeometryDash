@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public enum AgentState
-{
+{   
     Ground,
     Fly
 }

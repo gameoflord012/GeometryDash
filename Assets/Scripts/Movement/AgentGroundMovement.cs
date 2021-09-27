@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentMovement : MonoBehaviour
+public class AgentGroundMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float jumpForce = 15f;
@@ -25,6 +25,8 @@ public class AgentMovement : MonoBehaviour
 
     public void Jump()
     {
+        if (isActiveAndEnabled == false) return;
+
         if(IsOnGround() || NearJumpPoint())
         {
             rb.velocity = Vector2.up * jumpForce;
