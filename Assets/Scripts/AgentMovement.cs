@@ -8,6 +8,7 @@ public class AgentMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float jumpForce = 15f;
     [SerializeField] float onGroundDistance = 1f;
+    [SerializeField] float rotationSpeed = 30f;    
 
     Rigidbody2D rb;
 
@@ -24,7 +25,10 @@ public class AgentMovement : MonoBehaviour
     public void Jump()
     {
         if(IsOnGround())
+        {
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            rb.AddTorque(rotationSpeed * rb.inertia, ForceMode2D.Impulse);
+        }
     }
 
     bool IsOnGround()
