@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class AgentMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 10f;
@@ -16,7 +15,7 @@ public class AgentMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
 
     private void Update()
