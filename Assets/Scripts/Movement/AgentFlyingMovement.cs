@@ -5,6 +5,7 @@ public class AgentFlyingMovement : MonoBehaviour
 {
     [SerializeField] float flyingSpeed = 10f;
     [SerializeField] float flyUpForce = 15f;
+    [SerializeField] 
 
     public bool IsFlyingUp { get; set; }
 
@@ -17,7 +18,11 @@ public class AgentFlyingMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(flyingSpeed, IsFlyingUp ? flyUpForce: rb.velocity.y);
+        if(IsFlyingUp)
+            rb.AddForce(flyUpForce * Vector2.up * Time.fixedDeltaTime, ForceMode2D.Impulse);
+
+        rb.velocity = new Vector2(flyingSpeed, rb.velocity.y);
+
         rb.transform.right = rb.velocity.normalized;
     }
 }

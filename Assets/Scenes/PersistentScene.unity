@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flyingSpeed: 10
-  flyUpForce: 6
+  flyUpForce: 100
 --- !u!70 &857488595
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   jumpForce: 15
   onGroundDistance: 1
   jumpPointDistance: 1
-  rotationSpeed: -3
+  rotationSpeed: -5
 --- !u!61 &1691502446
 BoxCollider2D:
   m_ObjectHideFlags: 0
