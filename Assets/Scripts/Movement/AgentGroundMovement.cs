@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentGroundMovement : MonoBehaviour
+public class AgentGroundMovement : AgentMovementBase
 {
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] float jumpForce = 15f;
@@ -52,7 +52,7 @@ public class AgentGroundMovement : MonoBehaviour
 
     public void JumpBehaviour()
     {
-        if(timeSinceLastJumping > timeBetweenJumps)
+        if(isActiveAndEnabled && timeSinceLastJumping > timeBetweenJumps)
         {
             rb.velocity = Vector2.up * jumpForce;            
             timeSinceLastJumping = 0f;

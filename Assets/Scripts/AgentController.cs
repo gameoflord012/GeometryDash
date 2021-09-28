@@ -33,7 +33,7 @@ public class AgentController : MonoBehaviour
         }
     }
 
-    GameObject currentStateModel;
+    GameObject currentStateModel;   
 
     private void Awake()
     {
@@ -49,5 +49,10 @@ public class AgentController : MonoBehaviour
     private void DeadBehaviour()
     {
         Destroy(gameObject);
+    }
+
+    public void DisableMovement()
+    {
+        GetComponentInChildren<AgentMovementBase>().enabled = false;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class AgentFlyingMovement : MonoBehaviour
+public class AgentFlyingMovement : AgentMovementBase
 {
     [SerializeField] float flyingSpeed = 10f;
     [SerializeField] float flyUpForce = 15f;
