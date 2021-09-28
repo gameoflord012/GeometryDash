@@ -33,11 +33,13 @@ public class AgentController : MonoBehaviour
         }
     }
 
-    GameObject currentStateModel;   
+    GameObject currentStateModel;
+    Rigidbody2D rb;
 
     private void Awake()
     {
         CurrentState = currentState;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -51,8 +53,11 @@ public class AgentController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void DisableMovement()
+    public void FreezeMovement()
     {
         GetComponentInChildren<AgentMovementBase>().enabled = false;
+        rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
     }
 }
