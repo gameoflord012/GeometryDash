@@ -44,6 +44,9 @@ public class AgentGroundMovement : MonoBehaviour
     {
         if (IsJumping && IsOnGround()) JumpBehaviour();
 
+        if (!IsOnGround())
+            rb.angularVelocity = rotationSpeed * Mathf.Rad2Deg;
+
         timeSinceLastJumping += Time.deltaTime;
     }
 
@@ -52,7 +55,6 @@ public class AgentGroundMovement : MonoBehaviour
         if(timeSinceLastJumping > timeBetweenJumps)
         {
             rb.velocity = Vector2.up * jumpForce;            
-            rb.angularVelocity = rotationSpeed * Mathf.Rad2Deg;
             timeSinceLastJumping = 0f;
         }        
     }

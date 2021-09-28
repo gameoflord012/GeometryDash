@@ -5,10 +5,12 @@ public class AgentFlyingMovement : MonoBehaviour
 {
     [SerializeField] float flyingSpeed = 10f;
     [SerializeField] float flyUpForce = 15f;
+    [SerializeField] float gravityScale = 5f;
 
     public bool IsFlyingUp { get; set; }
 
     Rigidbody2D rb;
+    private float initialGravityScale;
 
     private void Awake()
     {
@@ -21,7 +23,17 @@ public class AgentFlyingMovement : MonoBehaviour
             rb.AddForce(flyUpForce * Vector2.up * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
         rb.velocity = new Vector2(flyingSpeed, rb.velocity.y);
-
         rb.transform.right = rb.velocity.normalized;
+        rb.gravityScale = gravityScale;
+    }
+
+    private void OnEnable()
+    {
+        initialGravityScale = rb.gravityScale;
+    }
+
+    private void OnDisable()
+    {
+        rb.gravityScale = initialGravityScale;
     }
 }
