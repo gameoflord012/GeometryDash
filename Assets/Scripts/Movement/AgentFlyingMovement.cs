@@ -23,13 +23,13 @@ public class AgentFlyingMovement : MonoBehaviour
             rb.AddForce(flyUpForce * Vector2.up * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
         rb.velocity = new Vector2(flyingSpeed, rb.velocity.y);
-        rb.transform.right = rb.velocity.normalized;
-        rb.gravityScale = gravityScale;
+        rb.transform.right = rb.velocity.normalized;        
     }
 
     private void OnEnable()
     {
         initialGravityScale = rb.gravityScale;
+        rb.gravityScale = gravityScale;
     }
 
     private void OnDisable()
