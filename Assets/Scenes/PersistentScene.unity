@@ -318,7 +318,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 7
+  m_AngularDrag: 5
   m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -750,8 +750,8 @@ MonoBehaviour:
   jumpForce: 15
   onGroundDistance: 0.6
   jumpPointDistance: 1
-  rotationSpeed: -3.5
-  timeBetweenJumps: 0.5
+  rotationSpeed: -10
+  timeBetweenJumps: 0.1
 --- !u!61 &1691502446
 BoxCollider2D:
   m_ObjectHideFlags: 0

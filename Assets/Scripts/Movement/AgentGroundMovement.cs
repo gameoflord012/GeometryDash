@@ -9,10 +9,23 @@ public class AgentGroundMovement : MonoBehaviour
     [SerializeField] float jumpForce = 15f;
     [SerializeField] float onGroundDistance = .6f;
     [SerializeField] float jumpPointDistance = 1f;
-    [SerializeField] float rotationSpeed = -5f;
-    [SerializeField] float timeBetweenJumps = .3f;
+    [SerializeField] float rotationSpeed = -3.5f;
+    [SerializeField] float timeBetweenJumps = .1f;
 
-    public bool IsJumping { get; set; }
+
+    bool isJumping = false;
+    public bool IsJumping 
+    { 
+        get => isJumping; 
+        set
+        {
+            if (isJumping == value) return;
+            isJumping = value;
+
+            if (isJumping && NearJumpPoint())            
+                JumpBehaviour();
+        }
+    }
 
     float timeSinceLastJumping = Mathf.Infinity;
     Rigidbody2D rb;
@@ -28,15 +41,20 @@ public class AgentGroundMovement : MonoBehaviour
     }
 
     private void Update()
-    {        
-        if (IsJumping && timeSinceLastJumping > timeBetweenJumps && IsOnGround())
-        {
-            rb.velocity = Vector2.up * jumpForce;
-            rb.AddTorque(rotationSpeed, ForceMode2D.Impulse);
-            timeSinceLastJumping = 0f;
-        }
+    {
+        if (IsJumping && IsOnGround()) JumpBehaviour();
 
         timeSinceLastJumping += Time.deltaTime;
+    }
+
+    public void JumpBehaviour()
+    {
+        if(timeSinceLastJumping > timeBetweenJumps)
+        {
+            rb.velocity = Vector2.up * jumpForce;            
+            rb.angularVelocity = rotationSpeed * Mathf.Rad2Deg;
+            timeSinceLastJumping = 0f;
+        }        
     }
 
     bool IsOnGround()
