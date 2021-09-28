@@ -59,14 +59,8 @@ public class AgentGroundMovement : MonoBehaviour
 
     bool IsOnGround()
     {
-        var hit = Physics2D.Raycast(transform.position, GetGroundRay(), onGroundDistance, 1 << LayerMask.NameToLayer("Platform"));
+        var hit = Physics2D.Raycast(transform.position, Vector2.down, onGroundDistance, 1 << LayerMask.NameToLayer("Platform"));
         return hit.collider != null;
-    }
-
-    Vector2 GetGroundRay()
-    {
-        Vector2 result = Quaternion.AngleAxis(-90, Vector3.forward) * rb.velocity.normalized;
-        return result.normalized;
     }
 
     private bool NearJumpPoint()
@@ -77,7 +71,7 @@ public class AgentGroundMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay(transform.position, GetGroundRay() * onGroundDistance);
+        Gizmos.DrawRay(transform.position, Vector2.down * onGroundDistance);
         Gizmos.DrawWireSphere(transform.position, jumpPointDistance);
     }
 }

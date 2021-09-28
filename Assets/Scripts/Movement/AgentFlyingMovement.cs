@@ -5,7 +5,6 @@ public class AgentFlyingMovement : MonoBehaviour
 {
     [SerializeField] float flyingSpeed = 10f;
     [SerializeField] float flyUpForce = 15f;
-    [SerializeField] 
 
     public bool IsFlyingUp { get; set; }
 
